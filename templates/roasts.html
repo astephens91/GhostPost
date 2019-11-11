@@ -1,0 +1,32 @@
+<link rel='stylesheet' href='/static/style.css'>
+
+<h1 class="titles">GHOST POST</h1>
+<h3 class="titles">POST WITH FEAR</h3>
+<h4 class="titles">ALL THE ROASTS</h4>
+<nav id="navbar">
+    <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/addpost">POST SOME SPOOKS</a></li>
+        <li><a href="/boasts/">ALL THE BOASTS</a></li>
+        <li><a href="/roasts/">ALL THE ROASTS</a></li>
+        <li><a href="/netvotes/">VOTE LEADERS</a></li>
+    </ul>
+</nav>
+
+{% for post in data %}
+    {% if not post.is_boast %}
+        <ul class="posts">
+            <li>{{ post.content }}</li>
+            <li>by {{ post.author }}</li>
+            <li>{{ post.up_votes }} cheers <button class="button"><a href="/upvote/{{post.id}}"> THUMB UP THIS POST</a></button></li>
+            <br>
+            <li>{{ post.down_vote }} boos <button class="button"><a href="/downvote/{{post.id}}"> THUMB DOWN THIS POST</a></button></li>
+            <br>
+            <li>Posted on {{ post.post_date }}</li>
+            <br>
+            <a href="/delete/{{post.id}}">Delete</a>
+            <br><br>
+
+        </ul>
+    {% endif %}
+{% endfor %}
